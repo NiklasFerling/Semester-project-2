@@ -1,4 +1,5 @@
 import Logo from "../../assets/logo512.png";
+import NewestPosts from "../NewestPosts";
 
 function HomePage() {
   return (
@@ -19,7 +20,7 @@ function HomePage() {
         </form>
       </div>
       <h2 className="text-2xl mt-20 mb-5 text-center text-white">
-        Featured articles
+        Newest articles
       </h2>
       <div className="flex justify-center mx-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -48,6 +49,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <NewestPosts />
     </div>
   );
 }
