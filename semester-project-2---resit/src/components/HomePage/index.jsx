@@ -32,7 +32,9 @@ function HomePage() {
             placeholder="Search for a topic"
             className="py-1 px-2 flex-1 focus:outline-none bg-neutral-800 text-white"
           />
-          <i className="fas fa-search text-white"></i>
+          <button type="submit">
+            <i className="fas fa-search text-white"></i>
+          </button>
         </form>
       </div>
       <NewestPosts />
