@@ -1,4 +1,5 @@
 function save(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+  // console.log(key, data);
+  localStorage.setItem(key, data);
 }
 export default save;
