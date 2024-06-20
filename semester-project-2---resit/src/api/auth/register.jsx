@@ -18,7 +18,6 @@ async function authRegister(email, password, name) {
       }),
     });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -29,7 +28,6 @@ async function authRegister(email, password, name) {
 function RegisterForm() {
   function onRegister(data) {
     authRegister(data.email, data.password, data.name);
-    console.log(data);
   }
 
   const schema = yup

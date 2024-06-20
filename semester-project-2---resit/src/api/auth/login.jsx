@@ -15,7 +15,6 @@ async function login(email, password) {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    console.log(data);
     save("accessToken", data.data.accessToken);
     return data;
   } catch (error) {
@@ -44,7 +43,6 @@ function LoginForm() {
   const onLogin = (data) => {
     login(data.email, data.password);
     setIsLoggedIn(true);
-    console.log(data);
   };
 
   return (

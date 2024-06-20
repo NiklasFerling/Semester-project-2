@@ -1,5 +1,5 @@
 function load(key) {
-  const data = localStorage.getItem("data");
-  return data ? JSON.parse(data) : [];
+  const data = localStorage.getItem(key);
+  return data;
 }
 export default load;
