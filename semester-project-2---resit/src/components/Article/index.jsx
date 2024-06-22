@@ -2,13 +2,19 @@ import { useState } from "react";
 import deletePost from "../../api/posts/delete";
 import { useForm } from "react-hook-form";
 import updatePost from "../../api/posts/update";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 function Article(post) {
   const { register, handleSubmit } = useForm();
   const [isEditing, setIsEditing] = useState(false);
+
+  const { isLoggedIn } = useContext(AuthContext);
+
   function handleEdit() {
     setIsEditing(!isEditing);
   }
+
   function onUpdate(body) {
     const payload = {
       title: body.title,
@@ -17,7 +23,9 @@ function Article(post) {
     };
     updatePost(post.post.id, payload);
   }
+
   const tagsString = post.post.tags.toString().replaceAll(",", " ");
+
   return (
     <div className="flex flex-col justify-center mx-20">
       <div key={post.post.id} className="rounded-md p-5 bg-neutral-700 mb-10">
@@ -61,15 +69,18 @@ function Article(post) {
           <>
             <div className="flex justify-between">
               <h3 className="text-xl mb-2 text-white">{post.post.title}</h3>
-              <div>
-                <button onClick={() => handleEdit()}>
-                  <i className="fas fa-edit text-white mr-4"></i>
-                </button>
-                <button onClick={() => deletePost(post.post.id)}>
-                  <i className="fas fa-trash text-white"></i>
-                </button>
-              </div>
+              {isLoggedIn ? (
+                <div>
+                  <button onClick={() => handleEdit()}>
+                    <i className="fas fa-edit text-white mr-4"></i>
+                  </button>
+                  <button onClick={() => deletePost(post.post.id)}>
+                    <i className="fas fa-trash text-white"></i>
+                  </button>
+                </div>
+              ) : null}
             </div>
+
             <p className="text-white mb-2">{post.post.body}</p>
             {post.post.tags.map((tag) => (
               <span
