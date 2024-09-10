@@ -42,7 +42,9 @@ function LoginForm() {
 
   const onLogin = (data) => {
     login(data.email, data.password);
-    setIsLoggedIn(true);
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
   };
 
   return (
