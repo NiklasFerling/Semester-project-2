@@ -8,6 +8,7 @@ import { AuthContext } from "../../contexts/authContext";
 function Article(post) {
   const { register, handleSubmit } = useForm();
   const [isEditing, setIsEditing] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -21,7 +22,13 @@ function Article(post) {
       body: body.body,
       tags: body.tags.split(" "),
     };
-    updatePost(post.post.id, payload);
+    updatePost(post.post.id, payload).then((response) => {
+      if (response) {
+        console.log("Post updated");
+        setIsEditing(false);
+        setUpdateSuccess(true);
+      }
+    });
   }
 
   const tagsString = post.post.tags.toString().replaceAll(",", " ");
@@ -35,7 +42,7 @@ function Article(post) {
               <input
                 {...register("title")}
                 defaultValue={post.post.title}
-                className="flex-1 rounded-md focus:outline-none px-2 py-1 text-black mb-2 mr-4"
+                className="flex-1 rounded-md focus:outline-none px-2 py-1 bg-neutral-600 text-white mb-2 mr-4"
               />
               <div>
                 <button onClick={() => handleEdit()}>
@@ -50,10 +57,10 @@ function Article(post) {
               {...register("body")}
               rows={5}
               defaultValue={post.post.body}
-              className="w-full rounded-md focus:outline-none px-2 py-1"
+              className="w-full rounded-md focus:outline-none px-2 py-1 bg-neutral-600 text-white"
             ></textarea>
             <input
-              className="w-full rounded-md focus:outline-none px-2 py-1"
+              className="w-full rounded-md focus:outline-none px-2 py-1 bg-neutral-600 text-white"
               {...register("tags")}
               defaultValue={tagsString}
             />
@@ -68,7 +75,12 @@ function Article(post) {
         ) : (
           <>
             <div className="flex justify-between">
-              <h3 className="text-xl mb-2 text-white">{post.post.title}</h3>
+              <span className="flex gap-5 text-center mb-4">
+                <h3 className="text-xl mb-2 text-white">{post.post.title}</h3>
+                {updateSuccess && (
+                  <p className="text-green-500">Post updated</p>
+                )}
+              </span>
               {isLoggedIn ? (
                 <div>
                   <button onClick={() => handleEdit()}>
@@ -81,13 +93,13 @@ function Article(post) {
               ) : null}
             </div>
 
-            <p className="text-white mb-2">{post.post.body}</p>
+            <p className="text-white mb-8">{post.post.body}</p>
             {post.post.tags.map((tag) => (
               <span
                 key={tag}
                 className="text-white bg-neutral-500 rounded-md px-2 py-1 mr-2"
               >
-                {tag}
+                #{tag}
               </span>
             ))}
           </>

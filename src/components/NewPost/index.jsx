@@ -19,7 +19,13 @@ function NewPost() {
       body: data.body,
       tags: data.tags.split(" "),
     };
-    createPost(payload);
+    createPost(payload).then((response) => {
+      console.log(response);
+
+      if (response.data) {
+        window.location.href = "/";
+      }
+    });
   }
   return (
     <div className="min-h-screen text-white w-80 m-auto">
@@ -31,17 +37,17 @@ function NewPost() {
         <label htmlFor="title">Title</label>
         <input
           {...register("title")}
-          className="px-2 py-1 mb-2 rounded-md text-black focus:outline-none"
+          className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
         />
         <label htmlFor="tags">Tags (seperated by space)</label>
         <input
           {...register("tags")}
-          className="px-2 py-1 mb-2 rounded-md text-black focus:outline-none"
+          className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
         />
         <label htmlFor="title">Body</label>
         <textarea
           {...register("body")}
-          className="px-2 py-1 mb-2 rounded-md text-black focus:outline-none"
+          className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
         ></textarea>
         <button type="submit">Submit</button>
       </form>
