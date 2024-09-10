@@ -20,8 +20,6 @@ function NewPost() {
       tags: data.tags.split(" "),
     };
     createPost(payload).then((response) => {
-      console.log(response);
-
       if (response.data) {
         window.location.href = "/";
       }

@@ -31,7 +31,6 @@ function RegisterForm() {
 
   function onRegister(data) {
     authRegister(data.email, data.password, data.name).then((response) => {
-      console.log(response);
       if (response.data) {
         setRegisterErrors(false);
         setRegisterSuccess(true);

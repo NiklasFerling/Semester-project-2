@@ -22,13 +22,11 @@ function LoginForm() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      console.log(data);
 
       if (data.data) {
         save("accessToken", data.data.accessToken);
       } else if (!data.ok) {
         setLoginErrors(data.errors[0].message);
-        console.log(loginErrors);
       }
 
       return data;
@@ -55,7 +53,6 @@ function LoginForm() {
 
   const onLogin = (data) => {
     login(data.email, data.password).then((response) => {
-      console.log(response);
       if (response.data) {
         setIsLoggedIn(true);
         window.location.href = "/";

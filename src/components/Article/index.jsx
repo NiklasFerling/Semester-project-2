@@ -24,7 +24,6 @@ function Article(post) {
     };
     updatePost(post.post.id, payload).then((response) => {
       if (response) {
-        console.log("Post updated");
         setIsEditing(false);
         setUpdateSuccess(true);
       }
