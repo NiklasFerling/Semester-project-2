@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -26,8 +26,20 @@ async function authRegister(email, password, name) {
 }
 
 function RegisterForm() {
+  const [registerErrors, setRegisterErrors] = useState([]);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+
   function onRegister(data) {
-    authRegister(data.email, data.password, data.name);
+    authRegister(data.email, data.password, data.name).then((response) => {
+      console.log(response);
+      if (response.data) {
+        setRegisterErrors(false);
+        setRegisterSuccess(true);
+      } else if (response.errors) {
+        setRegisterSuccess(false);
+        setRegisterErrors(response.errors[0].message);
+      }
+    });
   }
 
   const schema = yup
@@ -58,7 +70,12 @@ function RegisterForm() {
       onSubmit={handleSubmit(onRegister)}
       className="flex flex-col bg-neutral-700 p-5 rounded-md mt-20 mb-4"
     >
-      <h2 className="text-xl mb-4">New user?</h2>
+      <h2 className="text-xl mb-4">User deactivated?</h2>
+      <p>Make a new one using name "Niklas"</p>
+      <p className="text-red-500">{registerErrors && registerErrors}</p>
+      <p className="text-green-500">
+        {registerSuccess && "User created successfully"}
+      </p>
       <label htmlFor="name">Name</label>
       <input
         {...register("name")}
