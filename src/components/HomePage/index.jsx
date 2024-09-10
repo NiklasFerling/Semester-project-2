@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 function HomePage() {
-  const { posts, setPosts } = useContext(PostsContext);
+  const { setPosts } = useContext(PostsContext);
   const { register, handleSubmit } = useForm();
 
   async function onSearch(string) {

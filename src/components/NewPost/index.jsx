@@ -35,8 +35,9 @@ function NewPost() {
         <label htmlFor="title">Title</label>
         <input
           {...register("title")}
-          className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
+          className="px-2 py-1 rounded-md text-white bg-neutral-600 focus:outline-none"
         />
+        <p className="text-red-400 mb-2">{errors.title?.message}</p>
         <label htmlFor="tags">Tags (seperated by space)</label>
         <input
           {...register("tags")}

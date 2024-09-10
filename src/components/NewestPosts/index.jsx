@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import deletePost from "../../api/posts/delete";
 import Article from "../Article";
 import { useContext } from "react";
 import { PostsContext } from "../../contexts/postsContext";

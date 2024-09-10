@@ -17,7 +17,7 @@ function Header() {
     if (token) {
       setIsLoggedIn(true);
     }
-  }, [load, setIsLoggedIn]);
+  }, [setIsLoggedIn]);
 
   return (
     <header className="flex flex-row-reverse px-20 py-5">

@@ -12,5 +12,6 @@ async function deletePost(id) {
       },
     }
   );
+  return response;
 }
 export default deletePost;
