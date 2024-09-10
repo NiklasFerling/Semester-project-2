@@ -10,7 +10,7 @@ function HomePage() {
 
   async function onSearch(string) {
     const result = await fetch(
-      `https://v2.api.noroff.dev/blog/posts/frekklas?_tag=${string.search}`
+      `https://v2.api.noroff.dev/blog/posts/Niklas?_tag=${string.search}`
     );
     const json = await result.json();
     setPosts(json);

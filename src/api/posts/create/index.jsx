@@ -4,7 +4,7 @@ async function createPost({ title, body, tags }) {
   try {
     const token = load("accessToken");
     const response = await fetch(
-      "https://v2.api.noroff.dev/blog/posts/frekklas",
+      "https://v2.api.noroff.dev/blog/posts/Niklas",
       {
         method: "POST",
         headers: {
@@ -19,6 +19,7 @@ async function createPost({ title, body, tags }) {
       }
     );
     const json = await response.json();
+    return json;
   } catch (error) {
     console.log(error);
   }

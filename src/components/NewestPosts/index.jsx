@@ -14,9 +14,7 @@ function NewestPosts() {
       try {
         setError(false);
         setLoading(true);
-        const data = await fetch(
-          "https://v2.api.noroff.dev/blog/posts/frekklas"
-        );
+        const data = await fetch("https://v2.api.noroff.dev/blog/posts/Niklas");
         const json = await data.json();
         setPosts(json);
       } catch (error) {
@@ -36,7 +34,7 @@ function NewestPosts() {
     return <p className="text-white text-center">An error occurred</p>;
   }
   if (posts.data.length === 0) {
-    return <p className="text-white text-center">No posts found</p>;
+    return <p className="text-white text-center mt-10">No posts found</p>;
   }
   return (
     <>
