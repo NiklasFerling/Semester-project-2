@@ -6,7 +6,7 @@ import createPost from "../../api/posts/create";
 
 function NewPost() {
   const schema = yup.object().shape({
-    title: yup.string().required(),
+    title: yup.string().required("Title is required"),
     body: yup.string().required(),
     tags: yup.string().required(),
   });
@@ -32,22 +32,30 @@ function NewPost() {
       </Link>
       <h2 className="text-xl mb-4">New post</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-        <label htmlFor="title">Title</label>
+        <label className="mb-1" htmlFor="title">
+          Title
+        </label>
         <input
           {...register("title")}
-          className="px-2 py-1 rounded-md text-white bg-neutral-600 focus:outline-none"
+          className="px-2 py-1 mb-3 rounded-md text-white bg-neutral-600 focus:outline-none"
         />
-        <p className="text-red-400 mb-2">{errors.title?.message}</p>
-        <label htmlFor="tags">Tags (seperated by space)</label>
+        {/* <p className="text-red-400 mb-2">{errors.title?.message}</p> */}
+
+        <label className="mb-1" htmlFor="title">
+          Body
+        </label>
+        <textarea
+          {...register("body")}
+          className="px-2 py-1 mb-3 rounded-md text-white bg-neutral-600 focus:outline-none"
+          rows={10}
+        ></textarea>
+        <label className="mb-1" htmlFor="tags">
+          Tags (seperated by space)
+        </label>
         <input
           {...register("tags")}
           className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
         />
-        <label htmlFor="title">Body</label>
-        <textarea
-          {...register("body")}
-          className="px-2 py-1 mb-2 rounded-md text-white bg-neutral-600 focus:outline-none"
-        ></textarea>
         <button type="submit">Submit</button>
       </form>
     </div>
