@@ -46,4 +46,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
 
-[My LinkedIn page]([www.linkedin.com](https://www.linkedin.com/in/niklas-ferling-197189198/))
+[My LinkedIn page](https://www.linkedin.com/in/niklas-ferling-197189198/)
